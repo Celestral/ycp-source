@@ -4,14 +4,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Game1
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
+    enum PlayerType { CPU, Player1, Player2 };
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D bat;
+        Bat player1;
+        Bat cpu;
 
         public Game1()
         {
@@ -41,6 +41,8 @@ namespace Game1
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             bat = Content.Load<Texture2D>("bat");
+            player1 = new Bat(this, spriteBatch, PlayerType.Player1);
+            cpu = new Bat(this, spriteBatch, PlayerType.CPU);
 
             // TODO: use this.Content to load your game content here
         }
@@ -77,7 +79,8 @@ namespace Game1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            spriteBatch.Draw(bat, new Vector2(250, 250), Color.White);
+            player1.Draw(gameTime);
+            cpu.Draw(gameTime);
             spriteBatch.End();
 
 
