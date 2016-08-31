@@ -11,6 +11,7 @@ namespace Game1
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D bat;
 
         public Game1()
         {
@@ -39,6 +40,7 @@ namespace Game1
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            bat = Content.Load<Texture2D>("bat");
 
             // TODO: use this.Content to load your game content here
         }
@@ -74,6 +76,10 @@ namespace Game1
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+            spriteBatch.Draw(bat, new Vector2(250, 250), Color.White);
+            spriteBatch.End();
+
 
             // TODO: Add your drawing code here
 
