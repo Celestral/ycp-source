@@ -11,7 +11,9 @@ namespace Game1
         SpriteBatch spriteBatch;
         Texture2D bat;
         Bat player1;
+        Bat player2;
         Bat cpu;
+        Ball ball;
 
         public Game1()
         {
@@ -42,7 +44,10 @@ namespace Game1
             spriteBatch = new SpriteBatch(GraphicsDevice);
             bat = Content.Load<Texture2D>("bat");
             player1 = new Bat(this, spriteBatch, PlayerType.Player1);
-            cpu = new Bat(this, spriteBatch, PlayerType.CPU);
+            player2 = new Bat(this, spriteBatch, PlayerType.Player2);
+            ball = new Ball(this, spriteBatch);
+
+            //cpu = new Bat(this, spriteBatch, PlayerType.CPU);
 
             // TODO: use this.Content to load your game content here
         }
@@ -67,7 +72,10 @@ namespace Game1
                 Exit();
 
             // TODO: Add your update logic here
-
+            CheckIntersect();
+            player1.Update(gameTime);
+            player2.Update(gameTime);
+            ball.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -80,13 +88,23 @@ namespace Game1
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             player1.Draw(gameTime);
-            cpu.Draw(gameTime);
+            player2.Draw(gameTime);
+            ball.Draw(gameTime);
             spriteBatch.End();
 
 
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+        public void CheckIntersect()
+        {
+            if (ball.intersectionRectangle.Intersects(player1.intersectionRectangle) || ball.intersectionRectangle.Intersects(player2.intersectionRectangle))
+            {
+                ball.Bounce();
+            }
+
         }
     }
 }
