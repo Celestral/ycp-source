@@ -1,23 +1,28 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Game1
 {
+    // Used to differentiate between input methods.
     public enum PlayerType { CPU, Player1, Player2 };
+    // Used to differentiate between the specific screens and modes of the game.
     public enum GameState { Menu, Players, CPU, GameOver };
     public class Game1 : Game
     {
+        // Auto generated for Monogame projects.
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        // The different types of screens to display.
         MenuScreen menu;
         public PlayScreen playScreen;
         public GameOverScreen gameOverScreen;
 
+        // One font is used throughout the project and YoungCapital's Orange color is used for text.
         public SpriteFont font;
         public Color youngCapitalOrange;
 
+        // The gamestate the game is currently in.
         public GameState gameState;
 
         public Game1()
@@ -34,7 +39,7 @@ namespace Game1
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // Game should start on Menu screen.
             gameState = GameState.Menu;
 
             base.Initialize();
@@ -49,9 +54,11 @@ namespace Game1
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // Load the standard font and color.
             font = Content.Load<SpriteFont>("Font");
             youngCapitalOrange = new Color(245, 128, 32);
 
+            // Create the menu screen.
             menu = new MenuScreen(this, spriteBatch);
         }
 
@@ -61,7 +68,6 @@ namespace Game1
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -71,8 +77,7 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // While the menu is active, only menu-input is checked.
-            // All game-related methods are only called during actual gameplay.
+            // All updates are delegated to the screen objects of the current gamestate.
             switch (gameState)
             {
                 case GameState.Menu:
@@ -95,9 +100,11 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            // Sets the background color to black.
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
+            // All further drawing is delegated to the screen objects of the current gamestate.
             switch (gameState)
             {
                 case GameState.Menu:
