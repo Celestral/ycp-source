@@ -28,3 +28,4 @@ D:\Documents\Visual Studio 2015\Projects\ycp-source\Game1\bin\Windows\x86\Debug\
 D:\Documents\Visual Studio 2015\Projects\ycp-source\Game1\bin\Windows\x86\Debug\Content\bat.xnb
 D:\Documents\Visual Studio 2015\Projects\ycp-source\Game1\bin\Windows\x86\Debug\Content\Font.xnb
 D:\Documents\Visual Studio 2015\Projects\ycp-source\Game1\bin\Windows\x86\Debug\Content\pointer.xnb
+D:\Documents\Visual Studio 2015\Projects\ycp-source\Game1\bin\Windows\x86\Debug\Content\ballglow.xnb

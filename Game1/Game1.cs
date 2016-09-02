@@ -16,6 +16,7 @@ namespace Game1
         public GameOverScreen gameOverScreen;
 
         public SpriteFont font;
+        public Color youngCapitalOrange;
 
         public GameState gameState;
 
@@ -49,6 +50,7 @@ namespace Game1
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             font = Content.Load<SpriteFont>("Font");
+            youngCapitalOrange = new Color(245, 128, 32);
 
             menu = new MenuScreen(this, spriteBatch);
         }
@@ -84,7 +86,6 @@ namespace Game1
                     break;
             }
 
-
             base.Update(gameTime);
         }
 
@@ -94,7 +95,7 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
             switch (gameState)
