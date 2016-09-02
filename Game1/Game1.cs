@@ -4,16 +4,25 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Game1
 {
-    enum PlayerType { CPU, Player1, Player2 };
+    public enum PlayerType { CPU, Player1, Player2 };
+    public enum GameState { Menu, Players, CPU, GameOver };
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D bat;
+
+        Menu menu;
+
         Bat player1;
         Bat player2;
-        Bat cpu;
+
         Ball ball;
+
+        private SpriteFont font;
+        public static int player1Score;
+        public static int player2Score;
+
+        public GameState gameState;
 
         public Game1()
         {
@@ -31,6 +40,11 @@ namespace Game1
         {
             // TODO: Add your initialization logic here
 
+            player1Score = 0;
+            player2Score = 0;
+
+            gameState = GameState.Menu;
+
             base.Initialize();
         }
 
@@ -42,14 +56,10 @@ namespace Game1
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            bat = Content.Load<Texture2D>("bat");
-            player1 = new Bat(this, spriteBatch, PlayerType.Player1);
-            player2 = new Bat(this, spriteBatch, PlayerType.Player2);
-            ball = new Ball(this, spriteBatch);
 
-            //cpu = new Bat(this, spriteBatch, PlayerType.CPU);
+            menu = new Menu(this, spriteBatch);
 
-            // TODO: use this.Content to load your game content here
+            font = Content.Load<SpriteFont>("Font");
         }
 
         /// <summary>
@@ -71,11 +81,24 @@ namespace Game1
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-            CheckIntersect();
-            player1.Update(gameTime);
-            player2.Update(gameTime);
-            ball.Update(gameTime);
+            // While the menu is active, only menu-input is checked.
+            // All game-related methods are only called during actual gameplay.
+            switch (gameState)
+            {
+                case GameState.Menu:
+                    menu.Update(gameTime);
+                    break;
+                case GameState.GameOver:
+                    break;
+                default:
+                    //CheckIntersect();
+                    //player1.Update(gameTime);
+                    //player2.Update(gameTime);
+                    //ball.Update(gameTime);
+                    break;
+            }
+
+
             base.Update(gameTime);
         }
 
@@ -87,13 +110,25 @@ namespace Game1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            player1.Draw(gameTime);
-            player2.Draw(gameTime);
-            ball.Draw(gameTime);
+
+            switch (gameState)
+            {
+                case GameState.Menu:
+                    menu.Draw(gameTime);
+                    break;
+                case GameState.GameOver:
+                    break;
+                default:
+                    //player1.Draw(gameTime);
+                    //player2.Draw(gameTime);
+                    //ball.Draw(gameTime);
+
+                    spriteBatch.DrawString(font, player1Score.ToString(), new Vector2(GraphicsDevice.Viewport.Width / 2 + 50, 50), Color.Red);
+                    spriteBatch.DrawString(font, player2Score.ToString(), new Vector2(GraphicsDevice.Viewport.Width / 2 - 50, 50), Color.Red);
+                    break;
+            }
+
             spriteBatch.End();
-
-
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
