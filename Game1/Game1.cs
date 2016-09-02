@@ -11,8 +11,9 @@ namespace Game1
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Menu menu;
+        MenuScreen menu;
         public PlayScreen playScreen;
+        public GameOverScreen gameOverScreen;
 
         public SpriteFont font;
 
@@ -49,7 +50,7 @@ namespace Game1
 
             font = Content.Load<SpriteFont>("Font");
 
-            menu = new Menu(this, spriteBatch);
+            menu = new MenuScreen(this, spriteBatch);
         }
 
         /// <summary>
@@ -79,6 +80,7 @@ namespace Game1
                     menu.Update(gameTime);
                     break;
                 case GameState.GameOver:
+                    gameOverScreen.Update(gameTime);
                     break;
                 default:
                     playScreen.Update(gameTime);
@@ -104,6 +106,7 @@ namespace Game1
                     menu.Draw(gameTime);
                     break;
                 case GameState.GameOver:
+                    gameOverScreen.Draw(gameTime);
                     break;
                 default:
                     playScreen.Draw(gameTime);
