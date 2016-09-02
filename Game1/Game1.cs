@@ -12,15 +12,9 @@ namespace Game1
         SpriteBatch spriteBatch;
 
         Menu menu;
-
-        Bat player1;
-        Bat player2;
-
-        Ball ball;
+        public PlayScreen playScreen;
 
         public SpriteFont font;
-        public static int player1Score;
-        public static int player2Score;
 
         public GameState gameState;
 
@@ -39,10 +33,6 @@ namespace Game1
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
-            player1Score = 0;
-            player2Score = 0;
-
             gameState = GameState.Menu;
 
             base.Initialize();
@@ -91,10 +81,7 @@ namespace Game1
                 case GameState.GameOver:
                     break;
                 default:
-                    //CheckIntersect();
-                    //player1.Update(gameTime);
-                    //player2.Update(gameTime);
-                    //ball.Update(gameTime);
+                    playScreen.Update(gameTime);
                     break;
             }
 
@@ -119,12 +106,7 @@ namespace Game1
                 case GameState.GameOver:
                     break;
                 default:
-                    //player1.Draw(gameTime);
-                    //player2.Draw(gameTime);
-                    //ball.Draw(gameTime);
-
-                    spriteBatch.DrawString(font, player1Score.ToString(), new Vector2(GraphicsDevice.Viewport.Width / 2 + 50, 50), Color.Red);
-                    spriteBatch.DrawString(font, player2Score.ToString(), new Vector2(GraphicsDevice.Viewport.Width / 2 - 50, 50), Color.Red);
+                    playScreen.Draw(gameTime);
                     break;
             }
 
@@ -133,13 +115,5 @@ namespace Game1
             base.Draw(gameTime);
         }
 
-        public void CheckIntersect()
-        {
-            if (ball.intersectionRectangle.Intersects(player1.intersectionRectangle) || ball.intersectionRectangle.Intersects(player2.intersectionRectangle))
-            {
-                ball.Bounce();
-            }
-
-        }
     }
 }
