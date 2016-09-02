@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>D:/Documents/Visual Studio 2015/Projects/ycp-source/Game1/Content/ball.png</File>
+    <File>D:/Documents/Visual Studio 2015/Projects/ycp-source/Game1/Content/bat glow.png</File>
+    <File>D:/Documents/Visual Studio 2015/Projects/ycp-source/Game1/Content/bat.png</File>
+    <File>D:/Documents/Visual Studio 2015/Projects/ycp-source/Game1/Content/Font.spritefont</File>
+    <File>D:/Documents/Visual Studio 2015/Projects/ycp-source/Game1/Content/pointer.png</File>
+    <File>D:/Documents/Visual Studio 2015/Projects/ycp-source/Game1/Content/ballglow.png</File>
+  </SourceFiles>
+</SourceFileCollection>
