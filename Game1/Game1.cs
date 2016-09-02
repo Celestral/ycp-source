@@ -18,7 +18,7 @@ namespace Game1
 
         Ball ball;
 
-        private SpriteFont font;
+        public SpriteFont font;
         public static int player1Score;
         public static int player2Score;
 
@@ -57,9 +57,9 @@ namespace Game1
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            menu = new Menu(this, spriteBatch);
-
             font = Content.Load<SpriteFont>("Font");
+
+            menu = new Menu(this, spriteBatch);
         }
 
         /// <summary>
